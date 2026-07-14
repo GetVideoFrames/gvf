@@ -11,8 +11,29 @@ description: Architecture, contracts, setup, and provenance rules for the GVF op
 - Surfaces: CLI (`gvf`) and local stdio MCP (`gvf-mcp`).
 - Flagship: `gvf run` / tool `gvf_run`. Primitives are advanced control.
 - No telemetry. Local/private processing only.
-- MIT for GVF-owned source. Desktop/auth/PostHog/Cloud stay private.
+- MIT for GVF-owned source. Desktop/auth/PostHog/managed API stay private.
 - Public contract is **`v1alpha1` / unstable** until validation — do not freeze `v1` early.
+
+## Product ladder (public messaging)
+
+| Surface | Repo / URL | Status |
+| ------- | ---------- | ------ |
+| GVF CLI + local MCP | this repo | Available (source install) |
+| GetVideoFrames Web | getvideoframes.com | Live |
+| GetVideoFrames Desktop | separate repo; download via site | Apple Silicon Mac today |
+| Managed API + remote MCP | getvideoframes.com/developers/ | **Planned** — not shipped |
+
+Root `README.md` is the OSS landing page: brand hero, product table, quick start, CLI/MCP, Desktop promo, link to [developers preview](https://getvideoframes.com/developers/). Screenshot placeholder: `docs/assets/desktop-studio-preview.svg` (replace with real Desktop capture when ready).
+
+## README claims checklist (do not over-promise)
+
+- Install is **from source** only — no `npm install -g @gvf/cli` until publish is enabled.
+- Contract is **`v1alpha1` unstable**, not v1 GA.
+- Text vision and FFmpeg sidecars remain **blocked** until provenance — link `docs/PROVENANCE.md`.
+- Managed/hosted API and MCP **do not exist** — point to `/developers/` as preview, not live product.
+- Do not imply “no telemetry” for GetVideoFrames Web/Desktop — OSS only.
+- Presets: only `representative`, `storyboard`, `people`.
+- No CONTRIBUTING/SECURITY docs yet — link GitHub Issues for community.
 
 ## Packages
 
