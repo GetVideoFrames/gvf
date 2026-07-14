@@ -1,0 +1,44 @@
+{
+  "name": "@gvf/ffmpeg",
+  "version": "0.1.0",
+  "description": "FFmpeg/ffprobe resolution, spawn helpers, and arg builders for GVF",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetVideoFrames/gvf.git",
+    "directory": "packages/ffmpeg"
+  },
+  "homepage": "https://github.com/GetVideoFrames/gvf#readme",
+  "bugs": {
+    "url": "https://github.com/GetVideoFrames/gvf/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./sidecar-manifest.json": "./sidecar-manifest.json"
+  },
+  "files": [
+    "dist",
+    "sidecar-manifest.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+*.tsbuildinfo
+coverage/
+
+# Runtime / local artifacts
+.gvf/
+workspaces/
+output/
+out/
+*.workspace/
+
+# Models and FFmpeg binaries (never commit)
+**/models/*.onnx
+**/models/*.bin
+**/ffmpeg/bin/
+resources/ffmpeg/bin/
+resources/models/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log
+.env
+.env.*
+
+# SBOM / audit outputs (generated)
+sbom.json
+license-report.json
+
+# Test temp
+tmp/
+.tmp/

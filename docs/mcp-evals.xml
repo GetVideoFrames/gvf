@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaluation>
+  <qa_pair>
+    <question>Using only gvf_runtime_status, determine whether this machine can run gvf_probe now. Report the runtime contract and stability, and if probing is unavailable, quote the actionable FFmpeg guidance.</question>
+    <answer>The runtime contract is v1alpha1 and stability is unstable. Probing is available exactly when ffmpeg.ok is true. If false, report ffmpeg.hint, which directs the user to install FFmpeg on PATH, set GVF_FFMPEG_PATH/GVF_FFPROBE_PATH, or run gvf setup ffmpeg.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on {{FIXTURES_DIR}}/landscape-2s-10fps.mp4 and {{FIXTURES_DIR}}/portrait-3s-12fps.mp4, identify which fixture is portrait and compare their display dimensions.</question>
+    <answer>portrait-3s-12fps.mp4 is portrait at 180x320. landscape-2s-10fps.mp4 is landscape at 320x180.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using one gvf_probe call with all four files under {{FIXTURES_DIR}}, identify the only fixture containing audio and confirm the audio status of the other three.</question>
+    <answer>square-audio-1.5s-8fps.mp4 is the only fixture with hasAudio=true. landscape-2s-10fps.mp4, portrait-3s-12fps.mp4, and wide-1s-15fps.mp4 all have hasAudio=false.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on all fixtures under {{FIXTURES_DIR}}, rank them by reported FPS from highest to lowest and include each FPS.</question>
+    <answer>wide-1s-15fps.mp4: 15 FPS; portrait-3s-12fps.mp4: 12 FPS; landscape-2s-10fps.mp4: 10 FPS; square-audio-1.5s-8fps.mp4: 8 FPS.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on all fixtures under {{FIXTURES_DIR}}, rank them by duration from longest to shortest and report the duration difference between the longest and shortest.</question>
+    <answer>portrait-3s-12fps.mp4: 3 seconds; landscape-2s-10fps.mp4: 2 seconds; square-audio-1.5s-8fps.mp4: 1.5 seconds; wide-1s-15fps.mp4: 1 second. The longest-shortest difference is 2 seconds.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Use gvf_probe on every fixture under {{FIXTURES_DIR}}. For each file, multiply reported duration by reported FPS to estimate nominal frame opportunities, then rank the results.</question>
+    <answer>portrait-3s-12fps.mp4: 36; landscape-2s-10fps.mp4: 20; wide-1s-15fps.mp4: 15; square-audio-1.5s-8fps.mp4: 12 nominal frame opportunities.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on all four fixtures under {{FIXTURES_DIR}}, classify each as landscape, portrait, or square from display dimensions, and identify the widest aspect ratio.</question>
+    <answer>landscape-2s-10fps.mp4 is landscape (320x180, 16:9); portrait-3s-12fps.mp4 is portrait (180x320, 9:16); square-audio-1.5s-8fps.mp4 is square (240x240, 1:1); wide-1s-15fps.mp4 is landscape (640x360, 16:9). The widest aspect ratio is a tie between the two 16:9 fixtures.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on every file under {{FIXTURES_DIR}}, verify whether the video codec and container family are consistent across fixtures while noting the one stream-level difference.</question>
+    <answer>All four fixtures report codec mpeg4 and container mov,mp4,m4a,3gp,3g2,mj2. The stream-level difference is that square-audio-1.5s-8fps.mp4 includes audio while the other three do not.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Use gvf_runtime_status and gvf_probe on {{FIXTURES_DIR}}/wide-1s-15fps.mp4. Verify the versioned response contracts and determine whether any upload or remote service is required for this check.</question>
+    <answer>gvf_runtime_status reports schema gvf.runtime/v1alpha1 with contract v1alpha1 and stability unstable; the probe item reports schema gvf.probe/v1alpha1. Both operations are local and read-only; no upload or remote service is required.</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using gvf_probe on all fixtures under {{FIXTURES_DIR}}, select the fixture with the largest display pixel area. Report its area and compare it with the second-largest fixture.</question>
+    <answer>wide-1s-15fps.mp4 is largest at 640x360 = 230,400 pixels. The second-largest is square-audio-1.5s-8fps.mp4 at 240x240 = 57,600 pixels, so the largest has exactly four times the display area.</answer>
+  </qa_pair>
+</evaluation>

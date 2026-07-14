@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run audit
+      - run: npm run sbom
+      - run: npm run license:check
+      - run: npm run pack:check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supply-chain-reports
+          path: |
+            sbom.json
+            license-report.json
+
+  release-validation:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run pack:check
+      - name: Confirm validation-only release
+        run: echo "Package contents validated; automatic publishing is disabled while provenance blockers remain."
+
+  # Vision model download is intentionally NOT in CI — weights are optional
+  # and text setup is blocked. Do not add steps that require ONNX files.

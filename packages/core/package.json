@@ -1,0 +1,44 @@
+{
+  "name": "@gvf/core",
+  "version": "0.1.0",
+  "description": "GVF core — workspace, sampling, analysis, selection, pipeline handlers",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetVideoFrames/gvf.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/GetVideoFrames/gvf#readme",
+  "bugs": {
+    "url": "https://github.com/GetVideoFrames/gvf/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@gvf/ffmpeg": "0.1.0",
+    "@gvf/vision": "0.1.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

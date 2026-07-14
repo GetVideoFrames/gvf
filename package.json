@@ -1,0 +1,47 @@
+{
+  "name": "gvf",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GVF — Open-source video frame intelligence",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "bin": {
+    "gvf": "./packages/cli/bin/gvf.js",
+    "gvf-mcp": "./packages/mcp/bin/gvf-mcp.js"
+  },
+  "scripts": {
+    "build": "npm run build -w @gvf/ffmpeg && npm run build -w @gvf/vision && npm run build -w @gvf/core && npm run build -w @gvf/cli && npm run build -w @gvf/mcp",
+    "typecheck": "npm run build",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run mcp:eval:check && vitest run",
+    "test:watch": "vitest",
+    "mcp:inspect": "npm run build -w @gvf/mcp && mcp-inspector node ./packages/mcp/bin/gvf-mcp.js",
+    "mcp:fixtures": "node ./scripts/generate-mcp-fixtures.mjs",
+    "mcp:eval:check": "node ./scripts/check-mcp-evals.mjs",
+    "clean": "npm run clean --workspaces --if-present && rm -rf coverage",
+    "audit": "npm audit --audit-level=high",
+    "sbom": "node ./node_modules/@cyclonedx/cyclonedx-npm/bin/cyclonedx-npm-cli.js --output-format JSON --spec-version 1.6 --output-file sbom.json --validate",
+    "license:check": "node ./scripts/check-licenses.mjs",
+    "pack:check": "node ./scripts/check-packages.mjs"
+  },
+  "devDependencies": {
+    "@cyclonedx/cyclonedx-npm": "^6.0.0",
+    "@eslint/js": "^9.22.0",
+    "@modelcontextprotocol/inspector": "0.22.0",
+    "@types/node": "^22.13.10",
+    "eslint": "^9.22.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.26.1",
+    "vitest": "^3.0.8"
+  }
+}

@@ -1,0 +1,5 @@
+sbom.json
+license-report.json
+dist/
+coverage/
+node_modules/

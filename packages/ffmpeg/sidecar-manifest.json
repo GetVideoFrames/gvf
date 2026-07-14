@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "license": "LGPL-2.1+",
+  "note": "PUBLIC RELEASE BLOCKER for managed sidecars: GVF can install verified external FFmpeg/ffprobe into ~/.gvf/runtime/ffmpeg once platform URLs, exact builds, licenses, and SHA-256 digests are approved. Until then status remains blocked and setup guides users to system FFmpeg. Binaries are never shipped in npm.",
+  "binaries": [
+    {
+      "id": "ffmpeg",
+      "platform": "darwin",
+      "arch": "arm64",
+      "filename": "ffmpeg",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Darwin arm64 LGPL FFmpeg download URL + SHA-256 published for GVF OSS yet. Use system FFmpeg (brew install ffmpeg) or GVF_FFMPEG_PATH."
+    },
+    {
+      "id": "ffprobe",
+      "platform": "darwin",
+      "arch": "arm64",
+      "filename": "ffprobe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Darwin arm64 LGPL ffprobe download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffmpeg",
+      "platform": "darwin",
+      "arch": "x64",
+      "filename": "ffmpeg",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Darwin x64 LGPL FFmpeg download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffprobe",
+      "platform": "darwin",
+      "arch": "x64",
+      "filename": "ffprobe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Darwin x64 LGPL ffprobe download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffmpeg",
+      "platform": "linux",
+      "arch": "x64",
+      "filename": "ffmpeg",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Linux x64 LGPL FFmpeg download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffprobe",
+      "platform": "linux",
+      "arch": "x64",
+      "filename": "ffprobe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Linux x64 LGPL ffprobe download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffmpeg",
+      "platform": "win32",
+      "arch": "x64",
+      "filename": "ffmpeg.exe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Windows x64 LGPL FFmpeg download URL + SHA-256 published for GVF OSS yet."
+    },
+    {
+      "id": "ffprobe",
+      "platform": "win32",
+      "arch": "x64",
+      "filename": "ffprobe.exe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "blocked",
+      "blockReason": "No independently approved Windows x64 LGPL ffprobe download URL + SHA-256 published for GVF OSS yet."
+    }
+  ]
+}

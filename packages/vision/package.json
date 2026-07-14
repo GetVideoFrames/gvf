@@ -1,0 +1,48 @@
+{
+  "name": "@gvf/vision",
+  "version": "0.1.0",
+  "description": "Local vision providers for GVF (YOLOX object detection, text presence)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetVideoFrames/gvf.git",
+    "directory": "packages/vision"
+  },
+  "homepage": "https://github.com/GetVideoFrames/gvf#readme",
+  "bugs": {
+    "url": "https://github.com/GetVideoFrames/gvf/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./model-manifest.json": "./model-manifest.json"
+  },
+  "files": [
+    "dist",
+    "model-manifest.json",
+    "README.md",
+    "THIRD_PARTY_NOTICE.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "optionalDependencies": {
+    "onnxruntime-node": "^1.27.0"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
