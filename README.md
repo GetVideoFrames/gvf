@@ -26,6 +26,8 @@
   ·
   <a href="#getvideoframes-desktop"><strong>Get Desktop</strong></a>
   ·
+  <a href="https://github.com/GetVideoFrames/getvideoframes-ios"><strong>iOS app</strong></a>
+  ·
   <a href="https://getvideoframes.com/developers/"><strong>API & managed MCP</strong></a>
   ·
   <a href="docs/MCP.md"><strong>Local MCP docs</strong></a>
@@ -58,6 +60,7 @@ GVF turns a video into an explainable frame-selection workspace. Its recommended
 | **GVF local MCP**                                         | Open source · available         | Local agents that need video frame tools over stdio     |
 | **[GetVideoFrames Web](https://getvideoframes.com/)**     | Available                       | Fast visual extraction in a compatible browser          |
 | **GetVideoFrames Desktop**                                | Available for Apple Silicon Mac | A dedicated visual workflow on your computer            |
+| **[GetVideoFrames iOS](https://github.com/GetVideoFrames/getvideoframes-ios)** | Available                       | On-device smart frame extraction on iPhone and iPad     |
 | **[Managed API](https://getvideoframes.com/developers/)** | Planned                         | Hosted frame jobs for applications and teams            |
 | **[Managed MCP](https://getvideoframes.com/developers/)** | Planned                         | Remote agent access without operating the local runtime |
 
