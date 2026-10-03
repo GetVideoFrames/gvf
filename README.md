@@ -12,13 +12,17 @@
   <a href="https://github.com/GetVideoFrames/gvf/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/GetVideoFrames/gvf/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Node.js 22 or newer" src="https://img.shields.io/badge/node-%E2%89%A522-B7E04A?labelColor=151A17">
   <img alt="Public contract v1alpha1" src="https://img.shields.io/badge/contract-v1alpha1%20unstable-F3F1E8?labelColor=151A17">
+  <a href="https://getvideoframes.com/developers/"><img alt="Hosted API" src="https://img.shields.io/badge/API-live-B7E04A?labelColor=151A17"></a>
+  <a href="https://getvideoframes.com/developers/mcp/"><img alt="Hosted MCP" src="https://img.shields.io/badge/MCP-live-B7E04A?labelColor=151A17"></a>
 </p>
 
 <h2 align="center">Open-source video frame intelligence.</h2>
 
 <p align="center">
   A local CLI and MCP server for finding the frames worth keeping.<br>
-  Probe, extract, analyze, detect, select, and export — without uploading your video.
+  Probe, extract, analyze, detect, select, and export — without uploading your video.<br>
+  For public links, use the <a href="https://getvideoframes.com/developers/"><strong>hosted API</strong></a>
+  or the <a href="https://getvideoframes.com/developers/mcp/"><strong>remote MCP</strong></a>.
 </p>
 
 <p align="center">
@@ -26,7 +30,7 @@
   ·
   <a href="#getvideoframes-desktop"><strong>Get Desktop</strong></a>
   ·
-  <a href="https://github.com/GetVideoFrames/getvideoframes-ios"><strong>iOS app</strong></a>
+  <a href="https://getvideoframes.com/ios/"><strong>iOS app</strong></a>
   ·
   <a href="https://getvideoframes.com/developers/"><strong>API & managed MCP</strong></a>
   ·
@@ -54,17 +58,50 @@ GVF turns a video into an explainable frame-selection workspace. Its recommended
 
 ## Choose how you work
 
-| Product                                                   | Status                          | Best for                                                |
-| --------------------------------------------------------- | ------------------------------- | ------------------------------------------------------- |
-| **GVF CLI**                                               | Open source · available         | Scripts, pipelines, batch jobs, and direct control      |
-| **GVF local MCP**                                         | Open source · available         | Local agents that need video frame tools over stdio     |
-| **[GetVideoFrames Web](https://getvideoframes.com/)**     | Available                       | Fast visual extraction in a compatible browser          |
-| **GetVideoFrames Desktop**                                | Available for Apple Silicon Mac | A dedicated visual workflow on your computer            |
-| **[GetVideoFrames iOS](https://github.com/GetVideoFrames/getvideoframes-ios)** | Available                       | On-device smart frame extraction on iPhone and iPad     |
-| **[Managed API](https://getvideoframes.com/developers/)** | Available                       | Hosted frame jobs for applications and teams            |
-| **[Managed MCP](https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp)** | Available                       | Remote agent access with an API key, no local runtime   |
+| Product                                                                                            | Status                          | Best for                                            |
+| -------------------------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------------------- |
+| **GVF CLI**                                                                                        | Open source · available         | Scripts, pipelines, batch jobs, and direct control  |
+| **GVF local MCP**                                                                                  | Open source · available         | Local agents that need video frame tools over stdio |
+| **[GetVideoFrames Web](https://getvideoframes.com/)**                                              | Available                       | Fast visual extraction in a compatible browser      |
+| **GetVideoFrames Desktop**                                                                         | Available for Apple Silicon Mac | A dedicated visual workflow on your computer        |
+| **[GetVideoFrames iOS](https://apps.apple.com/us/app/getvideoframes-extract-frames/id6793356434)** | Available                       | On-device smart frame extraction on iPhone and iPad |
+| **[Hosted API](https://getvideoframes.com/developers/)**                                           | Live                            | Apps and pipelines that send a public video link    |
+| **[Hosted MCP](https://getvideoframes.com/developers/mcp/)**                                       | Live                            | Claude, Cursor, ChatGPT, and other remote agents    |
 
-The hosted API is live at `https://api.getvideoframes.com/v1`. The remote MCP is live at `https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp`: connect Claude, Cursor, or any MCP client and authorize with a `gvf_live_` key from the [developer dashboard](https://getvideoframes.com/developers/dashboard/). Jobs spend the same API credits. Local GVF stays on your machine and does not upload video.
+## Hosted API and remote MCP
+
+Use the hosted products when the video is a public link and you do not want to run FFmpeg yourself. GetVideoFrames downloads the video, extracts the frames, and returns signed URLs or a ZIP. YouTube, Shorts, TikTok, Instagram, Facebook, X, Vimeo, and direct video URLs are supported. New accounts get **60 free credits every month** (1 credit = 1 minute of video). Failed jobs are not charged.
+
+| Surface    | URL                                                                                                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| REST API   | `https://api.getvideoframes.com/v1`                                                                                                                                     |
+| Remote MCP | `https://mcp.getvideoframes.com/mcp`                                                                                                                                    |
+| Docs       | [API](https://getvideoframes.com/developers/) · [MCP setup](https://getvideoframes.com/developers/mcp/) · [Dashboard](https://getvideoframes.com/developers/dashboard/) |
+
+Create a `gvf_live_` key, then request frames:
+
+```bash
+curl -X POST "https://api.getvideoframes.com/v1/jobs?wait=true" \
+  -H "Authorization: Bearer $GVF_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://www.youtube.com/watch?v=VIDEO_ID","every":1,"format":"jpg","resolution":1080}'
+```
+
+Or connect an agent. Cursor example — the same URL works in Claude, ChatGPT, VS Code, and Claude Code:
+
+```json
+{
+  "mcpServers": {
+    "getvideoframes": {
+      "url": "https://mcp.getvideoframes.com/mcp"
+    }
+  }
+}
+```
+
+The first connection opens an authorization page where you paste the API key. Remote MCP jobs spend the same credits as the REST API.
+
+Keep using this repository when the file must stay on your machine. Local GVF does not upload video and has no telemetry. The hosted API and MCP are a separate service.
 
 ## Quick start
 
@@ -151,6 +188,8 @@ Use **`gvf_run`** for the complete workflow. Advanced tools mirror the CLI primi
 
 The MCP server is local stdio, calls Core directly, never installs dependencies, and returns bounded structured results. See the [MCP guide](docs/MCP.md) for Inspector and evaluation workflows.
 
+For public video links without a local runtime, connect the [hosted MCP](https://mcp.getvideoframes.com/mcp) instead. Setup for Claude, Cursor, ChatGPT, VS Code, and Claude Code is on the [MCP page](https://getvideoframes.com/developers/mcp/).
+
 ## How GVF works
 
 ```text
@@ -191,18 +230,19 @@ packages/vision    YOLOX provider, COCO taxonomy, and vision interfaces
 
 The open-source project is intentionally CLI- and agent-first. **GetVideoFrames Desktop** adds a dedicated visual interface for people who prefer timelines, previews, and direct selection over terminal workflows.
 
-The current download supports **Apple Silicon Mac**. Visit [getvideoframes.com](https://getvideoframes.com/) to download it and follow future platform releases.
+The current download supports **Apple Silicon Mac**. Visit [getvideoframes.com/download](https://getvideoframes.com/download/) to download it and follow future platform releases. On iPhone and iPad, use [GetVideoFrames for iOS](https://getvideoframes.com/ios/).
 
 The Desktop app is a separate commercial product and is not included in this MIT repository.
 
 ## Privacy and product boundaries
 
-|              | GVF open source           | Web & Desktop                     | Future managed API & MCP               |
-| ------------ | ------------------------- | --------------------------------- | -------------------------------------- |
-| Runtime      | Your machine              | Browser or desktop app            | GetVideoFrames-operated infrastructure |
-| License      | MIT for GVF-owned source  | Proprietary product               | To be defined before launch            |
-| Telemetry    | None in Core, CLI, or MCP | Governed by product privacy terms | To be defined before launch            |
-| Availability | CLI + local stdio MCP     | Web + Apple Silicon Desktop       | Not available yet                      |
+|              | GVF open source           | Web, Desktop & iOS                | Managed API & remote MCP                       |
+| ------------ | ------------------------- | --------------------------------- | ---------------------------------------------- |
+| Runtime      | Your machine              | Browser, Mac app, or iPhone/iPad  | GetVideoFrames-operated infrastructure         |
+| Input        | Local files               | Local files                       | Public video links and direct video URLs       |
+| License      | MIT for GVF-owned source  | Proprietary product               | Proprietary service, billed in API credits     |
+| Telemetry    | None in Core, CLI, or MCP | Governed by product privacy terms | Governed by product privacy terms              |
+| Availability | CLI + local stdio MCP     | Web + Apple Silicon Mac + iOS     | Live: `api.getvideoframes.com/v1` + remote MCP |
 
 Third-party binaries, models, and assets keep their own licenses. See [Third-Party Notices](THIRD_PARTY_NOTICES.md), [Ownership](docs/OWNERSHIP.md), and [Provenance](docs/PROVENANCE.md).
 

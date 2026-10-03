@@ -2,6 +2,8 @@
 
 Local **stdio** MCP server for GVF. Thin wrapper over `@gvf/core` handlers — never shells out to the CLI, never prompts, never installs runtimes.
 
+For public video links without installing FFmpeg, use the hosted server at `https://mcp.getvideoframes.com/mcp` and the REST API at `https://api.getvideoframes.com/v1`. Setup and a free API key: [getvideoframes.com/developers/mcp](https://getvideoframes.com/developers/mcp/). This package stays on the machine and does not upload video.
+
 ## Tools
 
 | Tool                                                                                     | Role                                |
