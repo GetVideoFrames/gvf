@@ -61,10 +61,10 @@ GVF turns a video into an explainable frame-selection workspace. Its recommended
 | **[GetVideoFrames Web](https://getvideoframes.com/)**     | Available                       | Fast visual extraction in a compatible browser          |
 | **GetVideoFrames Desktop**                                | Available for Apple Silicon Mac | A dedicated visual workflow on your computer            |
 | **[GetVideoFrames iOS](https://github.com/GetVideoFrames/getvideoframes-ios)** | Available                       | On-device smart frame extraction on iPhone and iPad     |
-| **[Managed API](https://getvideoframes.com/developers/)** | Planned                         | Hosted frame jobs for applications and teams            |
-| **[Managed MCP](https://getvideoframes.com/developers/)** | Planned                         | Remote agent access without operating the local runtime |
+| **[Managed API](https://getvideoframes.com/developers/)** | Available                       | Hosted frame jobs for applications and teams            |
+| **[Managed MCP](https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp)** | Available                       | Remote agent access with an API key, no local runtime   |
 
-The hosted API and managed MCP do **not** exist yet. The [developer preview](https://getvideoframes.com/developers/) describes the direction without promising endpoints, pricing, or a launch date.
+The hosted API is live at `https://api.getvideoframes.com/v1`. The remote MCP is live at `https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp`: connect Claude, Cursor, or any MCP client and authorize with a `gvf_live_` key from the [developer dashboard](https://getvideoframes.com/developers/dashboard/). Jobs spend the same API credits. Local GVF stays on your machine and does not upload video.
 
 ## Quick start
 

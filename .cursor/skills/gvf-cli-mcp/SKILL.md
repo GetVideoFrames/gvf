@@ -21,16 +21,16 @@ description: Architecture, contracts, setup, and provenance rules for the GVF op
 | GVF CLI + local MCP      | this repo                        | Available (source install) |
 | GetVideoFrames Web       | getvideoframes.com               | Live                       |
 | GetVideoFrames Desktop   | separate repo; download via site | Apple Silicon Mac today    |
-| Managed API + remote MCP | getvideoframes.com/developers/   | **Planned** — not shipped  |
+| Managed API + remote MCP | getvideoframes.com/developers/   | **Live** — API `https://api.getvideoframes.com/v1`, MCP `https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp` |
 
-Root `README.md` is the OSS landing page: brand hero, product table, quick start, CLI/MCP, Desktop promo, link to [developers preview](https://getvideoframes.com/developers/). Screenshot placeholder: `docs/assets/desktop-studio-preview.svg` (replace with real Desktop capture when ready).
+Root `README.md` is the OSS landing page: brand hero, product table, quick start, CLI/MCP, Desktop promo, link to the [live API and MCP](https://getvideoframes.com/developers/). Screenshot placeholder: `docs/assets/desktop-studio-preview.svg` (replace with real Desktop capture when ready).
 
 ## README claims checklist (do not over-promise)
 
 - Install is **from source** only — no `npm install -g @gvf/cli` until publish is enabled.
 - Contract is **`v1alpha1` unstable**, not v1 GA.
 - Text vision and FFmpeg sidecars remain **blocked** until provenance — link `docs/PROVENANCE.md`.
-- Managed/hosted API and MCP **do not exist** — point to `/developers/` as preview, not live product.
+- Managed API and remote MCP are **live**. Point to `/developers/` for the REST API and to `https://getvideoframes-mcp-server.daniel-c6b.workers.dev/mcp` for the hosted MCP. Local GVF does not upload video and has no telemetry.
 - Do not imply “no telemetry” for GetVideoFrames Web/Desktop — OSS only.
 - Presets: only `representative`, `storyboard`, `people`.
 - No CONTRIBUTING/SECURITY docs yet — link GitHub Issues for community.
